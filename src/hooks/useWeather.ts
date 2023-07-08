@@ -21,38 +21,61 @@ const useWeather = () => {
     )
   }, [history])
 
-  const getLocationCoord = async (city: string, country: string) => {
+  const getGeoData = async (city: string, country: string) => {
     // Fetch geographical data
     const geoData = await openWeatherApi.getGeoData({
       q: `${city},,${country}`,
     })
 
-    // Extract latitude and longtitude
-    const { lat, lon } = geoData[0]
+    if (!geoData[0]) throw Error('Location not found')
 
-    return { lat, lon }
+    // Extract city, country, latitude and longtitude
+    const { name: cityName, country: countryCode, lat, lon } = geoData[0]
+
+    return {
+      cityName,
+      countryCode,
+      lat,
+      lon,
+    }
+  }
+
+  // Generating the weather image url
+  const generateImageUrl = (icon: string) => {
+    return `https://openweathermap.org/img/wn/${icon}@4x.png`
   }
 
   const getWeather = async (city: string, country: string) => {
     try {
-      // Fetch latitude and longtitude of city
-      const { lat, lon } = await getLocationCoord(city, country)
+      // Fetch city, country, latitude and longtitude of city
+      const { cityName, countryCode, lat, lon } = await getGeoData(
+        city,
+        country,
+      )
 
       // Fetch weather data from latitude and longitude
       const weatherData = await openWeatherApi.getCurrentWeatherData({
         lat,
         lon,
+        units: 'metric',
       })
 
-      // Add search history to cache
-      addToSearchHistory(
-        `${weatherData.name}, ${weatherData.sys.country}`,
-        new Date().getTime(),
-      )
+      // Preparing other variables
+      const timestamp = new Date().getTime()
+      const imageUrl = generateImageUrl(weatherData.weather[0].icon)
 
-      return weatherData
+      // Add search history to cache
+      addToSearchHistory(`${cityName}, ${countryCode}`, timestamp)
+
+      return {
+        ...weatherData,
+        cityName,
+        countryCode,
+        timestamp,
+        imageUrl,
+      }
     } catch (e: any) {
-      console.log(e)
+      throw e
     }
   }
 

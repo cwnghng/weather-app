@@ -22,11 +22,20 @@ export const useWeatherSearchHistory = (): {
     locationString: string,
     timestamp: number,
   ): void => {
-    dispatch(addSearchEntry({ locationString, timestamp }))
+    dispatch(
+      addSearchEntry({
+        locationString,
+        timestamp,
+      }),
+    )
   }
 
   const removeFromSearchHistory = (locationString: string): void => {
-    dispatch(removeSearchEntry({ locationString }))
+    dispatch(
+      removeSearchEntry({
+        locationString,
+      }),
+    )
   }
 
   const clearSearchHistory = (): void => {

@@ -1,12 +1,12 @@
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Debug from './views/Debug'
+import WeatherApp from './views/WeatherApp'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Debug />} />
+        <Route path="/" element={<WeatherApp />} />
       </Routes>
     </BrowserRouter>
   )
