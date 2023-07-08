@@ -13,12 +13,12 @@ const weatherSearchHistorySlice = createSlice({
   initialState,
   reducers: {
     addSearchEntry: (state: IWeatherSearchHistoryState, action) => {
-      const { cityString, timestamp } = action.payload
-      state.weatherSearchHistory[cityString] = timestamp
+      const { locationString, timestamp } = action.payload
+      state.weatherSearchHistory[locationString] = timestamp
     },
     removeSearchEntry: (state: IWeatherSearchHistoryState, action) => {
-      const { cityString } = action.payload
-      delete state.weatherSearchHistory[cityString]
+      const { locationString } = action.payload
+      delete state.weatherSearchHistory[locationString]
     },
     clearSearchEntries: (state: IWeatherSearchHistoryState) => {
       state.weatherSearchHistory = {}

@@ -30,7 +30,7 @@ export const openWeatherApi = {
     }
   },
 
-  getGeoCode: async (body: {
+  getGeoData: async (body: {
     q: string // City name, state code (only for the US) and ISO3166 country code divided by comma.
     limit?: number // Number of the locations in the API response
   }) => {

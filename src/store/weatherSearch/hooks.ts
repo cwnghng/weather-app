@@ -8,8 +8,8 @@ import { RootState } from '..'
 
 export const useWeatherSearchHistory = (): {
   history: Record<string, number>
-  addToSearchHistory: (cityString: string, timestamp: number) => void
-  removeFromSearchHistory: (cityString: string) => void
+  addToSearchHistory: (locationString: string, timestamp: number) => void
+  removeFromSearchHistory: (locationString: string) => void
   clearSearchHistory: () => void
 } => {
   const dispatch = useDispatch()
@@ -18,12 +18,15 @@ export const useWeatherSearchHistory = (): {
     (state) => state?.weatherSearchHistory?.weatherSearchHistory,
   )
 
-  const addToSearchHistory = (cityString: string, timestamp: number): void => {
-    dispatch(addSearchEntry({ cityString, timestamp }))
+  const addToSearchHistory = (
+    locationString: string,
+    timestamp: number,
+  ): void => {
+    dispatch(addSearchEntry({ locationString, timestamp }))
   }
 
-  const removeFromSearchHistory = (cityString: string): void => {
-    dispatch(removeSearchEntry({ cityString }))
+  const removeFromSearchHistory = (locationString: string): void => {
+    dispatch(removeSearchEntry({ locationString }))
   }
 
   const clearSearchHistory = (): void => {
