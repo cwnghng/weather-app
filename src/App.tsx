@@ -1,13 +1,12 @@
-import React from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import RouterExample from './views/RouterExample'
+import Debug from './views/Debug'
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RouterExample />} />
+        <Route path="/" element={<Debug />} />
       </Routes>
     </BrowserRouter>
   )
