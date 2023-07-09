@@ -29,7 +29,10 @@ const DetailCard: React.FC<IProps> = (props: IProps) => {
                   WEATHER
                 </div>
                 <div className="font-bold text-2xl">
-                  {weather.weather[0].description}
+                  {weather.weather[0].main},
+                  <span className="font-bold text-sm text-slate-500">
+                    &nbsp;{weather.weather[0].description}
+                  </span>
                 </div>
                 <div className="font-bold">
                   <span className="text-2xl">
