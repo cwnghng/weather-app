@@ -55,7 +55,7 @@ const useWeather = () => {
    *
    * @param {string} city City name
    * @param {string} country Country name
-   * @returns
+   * @returns Weather information
    */
   const getWeather = async (city: string, country: string) => {
     try {

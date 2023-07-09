@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 
+/**
+ * Returns true if the viewport width is below or equal to 768px
+ * @returns {boolean}
+ */
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false)
 

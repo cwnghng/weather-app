@@ -1,46 +1,80 @@
-# Getting Started with Create React App
+# Weather React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Development requirements
 
-## Available Scripts
+This application is developed base on the requirements below:
+![Test page 1](./README/test-pg-1.png)
+![Test page 2](./README/test-pg-2.png)
 
-In the project directory, you can run:
+## Setup
 
-### `npm start`
+Before building and running the react app, add the environment variables:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+REACT_APP_OPEN_WEATHER_API_KEY=9718c90bb6647d81eeaf5db9e44a0af0
+REACT_APP_ENVIRONMENT=production
+```
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+You may use the API key specified above
 
-### `npm test`
+## Assumptions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+I made a few assumptions on the behaviour of the UI shown in the requirements above:
 
-### `npm run build`
+1. Search histories are based on cities. Searching a city that has been searched before will automatically push that city to the top of the search history list. No two cities can exist at the same time in the search history
+2. Maximum search entries in history is 10
+3. Forms are cleared after submitting
+4. Data shown is in metric units
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Code structure
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```python
+- src
+  - api
+    - handler.ts # Handles to handle AJAX request and responses
+    - ... # Functions to call different api services
+  - components
+    - ... # Reusable UI components
+  - hooks
+    - ... # Hooks for handling anything none-UI related, to relieve code clutter in UI code
+  - store
+    - index.ts # Redux configuration
+    - storeType
+      - reducer.ts # Redux reducers
+      - hooks.ts # Hooks to make use of the store and reducers
+  - utils
+  - views # Page components
+  App.tsx
+  Providers.tsx # Application level settings
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Libraries used
 
-### `npm run eject`
+### Main dependencies
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Typescript of styling
+2. Redux Toolkit for state management and state persistence
+3. React Hook Form for form state management
+4. Lodash for some basic lang utils
+5. DayJS for time formatting
+6. Axios for AJAX
+7. FontAwesome for icons used
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Dev dependencies
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Airbnb eslint styles
+2. Prettier for formatting code
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Some screenshots
 
-## Learn More
+### Main screen
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![App screen](./README/app-screen.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Error message
+
+![Error message](./README/app-error.png)
+
+### Loading state
+
+![Loading state](./README/app-loading.png)

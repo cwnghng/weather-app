@@ -1,7 +1,7 @@
 const { REACT_APP_ENVIRONMENT } = process.env
 
-export const handleResponseError = (e: any) => {
+export const handleResponseError = (e: any): Error => {
   if (REACT_APP_ENVIRONMENT !== 'production') console.log(e)
 
-  throw new Error(e.message)
+  return new Error(e.message)
 }

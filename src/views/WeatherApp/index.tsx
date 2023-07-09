@@ -36,19 +36,22 @@ const WeatherApp: React.FC = () => {
   )
 
   // Call getWeather using historic locationString
-  const handleSearchAgain = (locationString: string) => {
-    const [city, country] = locationString.split(', ')
-    onSubmitWeatherForm({
-      city,
-      country,
-    })
+  const handleSearchAgain = useCallback(
+    (locationString: string) => {
+      const [city, country] = locationString.split(', ')
+      onSubmitWeatherForm({
+        city,
+        country,
+      })
 
-    // Scroll to top when fetched to view new data
-    window.scrollTo(0, 0)
-  }
+      // Scroll to top when fetched to view new data
+      window.scrollTo(0, 0)
+    },
+    [onSubmitWeatherForm],
+  )
 
   return (
-    <div className="max-w-screen-lg mx-auto transition-all">
+    <div className="max-w-screen-lg mx-auto transition-all border-x border-slate-300 min-h-screen h-full">
       <SectionHeader title="Today's Weather" />
 
       <HorizontalDivider />
