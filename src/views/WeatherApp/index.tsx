@@ -9,13 +9,16 @@ import SectionHeader from './components/SectionHeader'
 
 const WeatherApp: React.FC = () => {
   const [weather, setWeather] = useState<any>()
-  const [error, setError] = useState<string>('')
 
-  // State for controlling loading spinnar
-  const [isFetched, setIsFetched] = useState<boolean>(false)
-
-  const { history, getWeather, removeFromSearchHistory, clearSearchHistory } =
-    useWeather()
+  const {
+    history,
+    getWeather,
+    removeFromSearchHistory,
+    clearSearchHistory,
+    isLoading,
+    isFetched,
+    error,
+  } = useWeather()
 
   const {
     handleSubmit,
@@ -24,39 +27,21 @@ const WeatherApp: React.FC = () => {
     formState: { isSubmitting, isValid },
   } = useForm()
 
-  const resetForm = useCallback(() => {
-    reset()
-    setError('')
-  }, [reset])
-
   const onSubmitWeatherForm = useCallback(
     async (data: any) => {
-      try {
-        // Setting to null to reveal loading spinner
-        setWeather(null)
-
-        setWeather(await getWeather(data.city, data.country))
-
-        resetForm()
-        setIsFetched(true)
-      } catch (e: any) {
-        setError(e.message)
-      }
+      setWeather(await getWeather(data.city, data.country))
+      reset()
     },
-    [getWeather, resetForm],
+    [getWeather, reset],
   )
 
-  // To getWeather from history list
+  // Call getWeather using historic locationString
   const handleSearchAgain = (locationString: string) => {
-    setWeather(null)
-
     const [city, country] = locationString.split(', ')
     onSubmitWeatherForm({
       city,
       country,
     })
-
-    setIsFetched(true)
 
     // Scroll to top when fetched to view new data
     window.scrollTo(0, 0)
@@ -78,7 +63,9 @@ const WeatherApp: React.FC = () => {
 
       <HorizontalDivider />
 
-      <DetailCard weather={weather} isFetchedBefore={isFetched} />
+      {((isFetched && !isLoading) || (!isFetched && isLoading)) && (
+        <DetailCard weather={weather} isLoading={isLoading} />
+      )}
 
       <HistoryList
         history={history}

@@ -28,7 +28,7 @@ const SearchForm: React.FC<IProps> = (props: IProps) => {
                 className="text-xl"
                 icon={faTriangleExclamation}
               />{' '}
-              {error}
+              {error.message}
             </>
           )}
         </div>
@@ -46,7 +46,7 @@ const SearchForm: React.FC<IProps> = (props: IProps) => {
 interface IProps {
   onSubmit: React.FormEventHandler
   register: Function
-  error: string
+  error?: Error
   reset: Function
   disabled: boolean
 }

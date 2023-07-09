@@ -9,14 +9,14 @@ import HorizontalDivider from '../../../components/HorizontalDivider'
 import useIsMobile from '../../../hooks/useIsMobile'
 
 const DetailCard: React.FC<IProps> = (props: IProps) => {
-  const { weather, isFetchedBefore } = props
+  const { weather, isLoading } = props
 
   const isMobile = useIsMobile()
 
-  return isFetchedBefore ? (
+  return (
     <>
       <div className="flex justify-between p-6 transition-all h-fit">
-        {weather ? (
+        {!isLoading ? (
           <>
             <div className="flex">
               {!isMobile && (
@@ -73,14 +73,12 @@ const DetailCard: React.FC<IProps> = (props: IProps) => {
       </div>
       <HorizontalDivider />
     </>
-  ) : (
-    <></>
   )
 }
 
 interface IProps {
   weather: any
-  isFetchedBefore: boolean
+  isLoading: boolean
 }
 
 export default DetailCard

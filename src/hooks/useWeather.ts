@@ -10,6 +10,11 @@ const useWeather = () => {
     clearSearchHistory,
   } = useWeatherSearchHistory()
 
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isFetched, setIsFetched] = useState<boolean>(false)
+  const [error, setError] = useState<Error | undefined>(undefined)
+
+  // History object as a sorted array
   const [sortedHistory, setSortedHistory] = useState<
     [locationString: string, timestamp: number][]
   >([])
@@ -45,8 +50,19 @@ const useWeather = () => {
     return `https://openweathermap.org/img/wn/${icon}@4x.png`
   }
 
+  /**
+   * Fetches the current weather information in the city and country specified from OpenWeatherAPI
+   *
+   * @param {string} city City name
+   * @param {string} country Country name
+   * @returns
+   */
   const getWeather = async (city: string, country: string) => {
     try {
+      setIsFetched(false)
+      setIsLoading(true)
+      setError(undefined)
+
       // Fetch city, country, latitude and longtitude of city
       const { cityName, countryCode, lat, lon } = await getGeoData(
         city,
@@ -67,6 +83,9 @@ const useWeather = () => {
       // Add search history to cache
       addToSearchHistory(`${cityName}, ${countryCode}`, timestamp)
 
+      setIsFetched(true)
+      setIsLoading(false)
+
       return {
         ...weatherData,
         cityName,
@@ -75,7 +94,8 @@ const useWeather = () => {
         imageUrl,
       }
     } catch (e: any) {
-      throw e
+      setError(e)
+      setIsLoading(false)
     }
   }
 
@@ -84,6 +104,9 @@ const useWeather = () => {
     history: sortedHistory,
     removeFromSearchHistory,
     clearSearchHistory,
+    isLoading,
+    isFetched,
+    error,
   }
 }
 
