@@ -78,3 +78,7 @@ I made a few assumptions on the behaviour of the UI shown in the requirements ab
 ### Loading state
 
 ![Loading state](./README/app-loading.png)
+
+### Mobile screen
+
+![Mobile screen](./README/app-mobile.png)
