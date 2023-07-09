@@ -70,12 +70,14 @@ const WeatherApp: React.FC = () => {
         <DetailCard weather={weather} isLoading={isLoading} />
       )}
 
-      <HistoryList
-        history={history}
-        handleSearchAgain={handleSearchAgain}
-        removeFromSearchHistory={removeFromSearchHistory}
-        clearSearchHistory={clearSearchHistory}
-      />
+      {history.length > 0 && (
+        <HistoryList
+          history={history}
+          handleSearchAgain={handleSearchAgain}
+          removeFromSearchHistory={removeFromSearchHistory}
+          clearSearchHistory={clearSearchHistory}
+        />
+      )}
     </main>
   )
 }

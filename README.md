@@ -25,6 +25,7 @@ I made a few assumptions on the behaviour of the UI shown in the requirements ab
 2. Maximum search entries in history is 10
 3. Forms are cleared after submitting
 4. Data shown is in metric units
+5. If there is no search history, the search history component does not render
 
 ## Code structure
 
@@ -70,6 +71,7 @@ I made a few assumptions on the behaviour of the UI shown in the requirements ab
 ### Main screen
 
 ![App screen](./README/app-screen.png)
+![App screen](./README/app-clear-history.png)
 
 ### Error message
 

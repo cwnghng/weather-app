@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faMagnifyingGlass,
   faTrashCan,
@@ -6,6 +5,7 @@ import {
 import HorizontalDivider from '../../../components/HorizontalDivider'
 import dayjs from 'dayjs'
 import SectionHeader from './SectionHeader'
+import IconButton from '../../../components/Button/IconButton'
 
 const HistoryList: React.FC<IProps> = (props: IProps) => {
   const {
@@ -34,20 +34,19 @@ const HistoryList: React.FC<IProps> = (props: IProps) => {
               </div>
             </div>
             <div>
-              <button
-                className="rounded-full text-xl p-2 text-slate-700"
+              <IconButton
+                icon={faMagnifyingGlass}
+                size="xl"
                 onClick={() => handleSearchAgain(locationString)}
                 aria-label={`Search ${locationString}`}
-              >
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-              </button>
-              <button
-                className="rounded-full text-xl p-2 text-slate-400 ml-2"
+              />
+              <IconButton
+                icon={faTrashCan}
+                variant="secondary"
+                size="xl"
                 onClick={() => removeFromSearchHistory(locationString)}
-                aria-label={`Delete ${locationString} from history`}
-              >
-                <FontAwesomeIcon icon={faTrashCan} />
-              </button>
+                ariaLabel={`Delete ${locationString} from history`}
+              />
             </div>
           </div>
           <HorizontalDivider />

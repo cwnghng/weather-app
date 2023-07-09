@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTriangleExclamation } from '@fortawesome/free-solid-svg-icons'
-import Button from '../../../components/Button'
+import PrimaryButton from '../../../components/Button/PrimaryButton'
 import RegisteredInputField from '../../../components/RegisteredInputField'
+import ErrorMessage from '../../../components/ErrorMessage'
+import SubButton from '../../../components/Button/SubButton'
 
 const SearchForm: React.FC<IProps> = (props: IProps) => {
   const { onSubmit, register, error, reset, disabled } = props
@@ -19,25 +19,12 @@ const SearchForm: React.FC<IProps> = (props: IProps) => {
           required: true,
         })}
       />
-      <Button disabled={disabled}>Find out the weather!</Button>
+      <PrimaryButton disabled={disabled} type="submit">
+        Find out the weather!
+      </PrimaryButton>
       <div className="col-span-12 flex w-full justify-between">
-        <div className="text-red-600">
-          {error && (
-            <>
-              <FontAwesomeIcon
-                className="text-xl"
-                icon={faTriangleExclamation}
-              />{' '}
-              {error.message}
-            </>
-          )}
-        </div>
-        <button
-          className="justify-self-end text-sm text-slate-500"
-          onClick={() => reset()}
-        >
-          Clear
-        </button>
+        <div>{error && <ErrorMessage message={error.message} />}</div>
+        <SubButton onClick={() => reset()}>Clear</SubButton>
       </div>
     </form>
   )
