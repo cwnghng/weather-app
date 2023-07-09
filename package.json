@@ -35,7 +35,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "prettier --check .; eslint 'src/**/*.{js,jsx,ts,tsx}' --max-warnings=0",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "serve": "serve -s build -p 3000"
   },
   "eslintConfig": {
     "extends": [
@@ -66,6 +67,7 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.8.8",
+    "serve": "^14.2.0",
     "tailwindcss": "^3.3.2"
   }
 }

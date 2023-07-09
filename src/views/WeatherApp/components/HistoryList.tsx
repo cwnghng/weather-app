@@ -37,12 +37,14 @@ const HistoryList: React.FC<IProps> = (props: IProps) => {
               <button
                 className="rounded-full text-xl p-2 text-slate-700"
                 onClick={() => handleSearchAgain(locationString)}
+                aria-label={`Search ${locationString}`}
               >
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
               </button>
               <button
                 className="rounded-full text-xl p-2 text-slate-400 ml-2"
                 onClick={() => removeFromSearchHistory(locationString)}
+                aria-label={`Delete ${locationString} from history`}
               >
                 <FontAwesomeIcon icon={faTrashCan} />
               </button>

@@ -51,7 +51,7 @@ const WeatherApp: React.FC = () => {
   )
 
   return (
-    <div className="max-w-screen-lg mx-auto transition-all border-x border-slate-300 min-h-screen h-full">
+    <main className="max-w-screen-lg mx-auto transition-all border-x border-slate-300 min-h-screen h-full">
       <SectionHeader title="Today's Weather" />
 
       <HorizontalDivider />
@@ -76,7 +76,7 @@ const WeatherApp: React.FC = () => {
         removeFromSearchHistory={removeFromSearchHistory}
         clearSearchHistory={clearSearchHistory}
       />
-    </div>
+    </main>
   )
 }
 
