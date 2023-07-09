@@ -8,6 +8,8 @@ This application is developed base on the requirements below:
 
 ## Setup
 
+### Environment Variables
+
 Before building and running the react app, add the environment variables:
 
 ```
@@ -16,6 +18,22 @@ REACT_APP_ENVIRONMENT=production
 ```
 
 You may use the API key specified above
+
+### Running the project
+
+1. Build production files
+
+```
+yarn build
+```
+
+2. Run a local server
+
+```
+yarn serve
+```
+
+3. Go to site at (http://localhost:3000)
 
 ## Assumptions
 
